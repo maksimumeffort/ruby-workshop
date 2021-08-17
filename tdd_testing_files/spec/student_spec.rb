@@ -9,10 +9,15 @@ RSpec.describe Student do
         expect(subject.study).to eq("Yes I am studying")
       end
 
-    describe '#passed?' do
+    describe '#pass?' do
       it 'return true if grade is more than 5' do
         successful_student = Student.new(grade:7)
-        expect(successful_student.passed?).to eq(true)
+        expect(successful_student).to be_pass
+      end
+
+      it 'return false if grade is 5 or less' do
+        unsuccessful_student = Student.new(grade:5)
+        expect(unsuccessful_student).to_not be_pass
       end
 
     end
