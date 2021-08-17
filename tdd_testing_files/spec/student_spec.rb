@@ -1,4 +1,4 @@
-require_relative 'student.rb'
+require_relative '../lib/student.rb'
 
 RSpec.describe Student do
 
@@ -9,7 +9,15 @@ RSpec.describe Student do
         expect(subject.study).to eq("Yes I am studying")
       end
 
+    describe '#passed?' do
+      it 'return true if grade is more than 5' do
+        successful_student = Student.new(grade:7)
+        expect(successful_student.passed?).to eq(true)
+      end
+
     end
+  end
+
 
 
   # Checks whether students create
@@ -29,5 +37,4 @@ RSpec.describe Student do
   #   student = Student.new
   #   expect(student.study).to eq "Yes I am studying"
   # end
-
 end
