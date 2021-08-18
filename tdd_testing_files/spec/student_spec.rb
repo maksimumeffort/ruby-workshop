@@ -4,23 +4,36 @@ RSpec.describe Student do
 
   subject {Student.new}
 
-    describe '#study' do
+    describe '#read' do
       it 'responds positively to study message' do
-        expect(subject.study).to eq("Yes I am studying")
+        expect(subject.read).to eq("Yes I am reading")
       end
+
+    describe '#study' do
+      context 'when the student has not passed' do
+        subject {described_class.new(grade:5)}
+
+        it 'has passed the exam' do
+          subject.study
+          expect(subject).to be_pass
+        end
+      end
+    end
 
     describe '#pass?' do
       context 'when grade is more than 5' do
+        subject {described_class.new(grade:7)}
+
         it 'return true' do
-          student = described_class.new(grade:7)
-          expect(student).to be_pass
+          expect(subject).to be_pass
         end
       end
 
       context 'when grade is 5 or less' do
+        subject {described_class.new(grade:5)}
+
         it 'return false' do
-          student = described_class.new(grade:5)
-          expect(student).to_not be_pass
+          expect(subject).to_not be_pass
         end
       end
 

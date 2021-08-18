@@ -3,8 +3,12 @@ class Student
     @grade = grade
   end
 
+  def read
+    "Yes I am reading"
+  end
+
   def study
-    "Yes I am studying"
+    @grade = 7
   end
 
   def pass?
