@@ -10,14 +10,18 @@ RSpec.describe Student do
       end
 
     describe '#pass?' do
-      it 'return true if grade is more than 5' do
-        successful_student = Student.new(grade:7)
-        expect(successful_student).to be_pass
+      context 'when grade is more than 5' do
+        it 'return true' do
+          student = described_class.new(grade:7)
+          expect(student).to be_pass
+        end
       end
 
-      it 'return false if grade is 5 or less' do
-        unsuccessful_student = Student.new(grade:5)
-        expect(unsuccessful_student).to_not be_pass
+      context 'when grade is 5 or less' do
+        it 'return false' do
+          student = described_class.new(grade:5)
+          expect(student).to_not be_pass
+        end
       end
 
     end
