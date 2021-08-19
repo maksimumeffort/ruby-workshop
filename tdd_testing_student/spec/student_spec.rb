@@ -38,6 +38,15 @@ RSpec.describe Student do
       end
 
     end
+
+    describe "major"
+      subject {described_class.new(major:)})
+
+      it 'return mojor study' do
+
+      end
+
+    end
   end
 
 
