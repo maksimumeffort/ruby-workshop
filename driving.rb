@@ -52,6 +52,10 @@ end
 def drive_decision(traffic_signal, weather, distance_to_signal, speed_limit)
 end
 
+def valid_weather_condition?(weather)
+  [:sunny, :rainy].include?(weather.to_sym)
+end
+
 def drive_decision(traffic_signal, weather, distance_to_signal, speed_limit)
   raise "Unhandled weather condition" unless valid_weather_condition?(weather)
   #...rest of the method implementation…
@@ -65,13 +69,12 @@ def drive_decision(traffic_signal, weather, distance_to_signal, speed_limit)
   end
 end
 
-def valid_weather_condition?(weather)
-[:sunny, :rainy].include?(weather.to_sym)
-end
+
 
 puts drive_decision(:yellow, :sunny, 25, 35)
 puts drive_decision(:red, :rainy, 25, 35)
 puts drive_decision(:green, :rainy, 25, 35)
 puts drive_decision(:green, :sunny, 25, 35)
+
 
 
