@@ -13,7 +13,10 @@ def mind_reader(range)
 
   end
 
-    puts guess == magic_number ? "Correct" : "magic number is #{magic_number}"
+    winner = "Correct"
+    loser = "Ran out of guesses. magic number is #{magic_number}"
+
+    puts guess == magic_number ? winner : loser
 end
 
 mind_reader(20)
