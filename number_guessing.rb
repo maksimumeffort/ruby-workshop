@@ -16,11 +16,8 @@ def play_game
     # guessing loop
     while input != random_number
       input = gets.chomp.to_i
-      if random_number > input
-        puts 'go high'
-      else
-        puts 'go low'
-      end
+      break if input == random_number
+      puts random_number > input ? 'go high' : 'go low'
     end
     puts 'you guessed correctly'
 
