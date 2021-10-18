@@ -14,7 +14,7 @@ def play_game
     puts 'guess the number'
 
     # guessing loop
-    while input != random_number
+    while input != random_number do
       input = gets.chomp.to_i
       break if input == random_number
       puts random_number > input ? 'go high' : 'go low'
