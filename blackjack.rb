@@ -33,7 +33,7 @@
       puts "Dealer has #{dealer_cards.sum}"
       puts player_cards.sum > dealer_cards.sum ? 'You win!' : 'You lose'
     end
-
+    puts "You're over 21. You lose"
   end
 
 
