@@ -20,19 +20,22 @@
   player_cards << draw_card
 
   puts "Dealer has #{dealer_cards[0]}"
-  puts "You have #{player_cards[0]}"
 
   # player choice logic
-  puts "Your move. [hit/stay]"
-  choice = gets.chomp
-
-  if choice == "hit"
-    player_cards << draw_card
-  else
+  until player_cards.sum > 21
     puts "You have #{player_cards.sum}"
-    puts "Dealer has #{dealer_cards.sum}"
-    puts player_cards.sum > dealer_cards.sum ? 'You win!' : 'You lose'
+    puts "Your move. [hit/stay]"
+    choice = gets.chomp
+
+    if choice == "hit"
+      player_cards << draw_card
+    else
+      puts "Dealer has #{dealer_cards.sum}"
+      puts player_cards.sum > dealer_cards.sum ? 'You win!' : 'You lose'
+    end
+
   end
+
 
 # single player, computer dealer
 #
