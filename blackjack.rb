@@ -2,27 +2,37 @@
 
   # greeting
   # puts 'Enter your name'
-  player_name = gets.chomp
+  # player_name = gets.chomp
 
   # puts "Welcome #{player_name}"
 
 # basic logic, score comparison only
-  player_score = nil
-  dealer_score = nil
 
   def draw_card
     rand(1...13)
   end
 
-  # first time drawing cards
+  # first cards
   dealer_cards = []
   2.times { dealer_cards << draw_card }
 
   player_cards = []
   player_cards << draw_card
 
-  puts "Dealer has #{dealer_cards}"
-  puts "You have #{player_cards}"
+  puts "Dealer has #{dealer_cards[0]}"
+  puts "You have #{player_cards[0]}"
+
+  # player choice logic
+  puts "Your move. [hit/stay]"
+  choice = gets.chomp
+
+  if choice == "hit"
+    player_cards << draw_card
+  else
+    puts "You have #{player_cards.sum}"
+    puts "Dealer has #{dealer_cards.sum}"
+    puts player_cards.sum > dealer_cards.sum ? 'You win!' : 'You lose'
+  end
 
 # single player, computer dealer
 #
