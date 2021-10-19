@@ -1,27 +1,28 @@
 # interface
 
   # greeting
-  puts 'Enter your name'
+  # puts 'Enter your name'
   player_name = gets.chomp
 
-  puts "Welcome #{player_name}"
+  # puts "Welcome #{player_name}"
 
 # basic logic, score comparison only
   player_score = nil
   dealer_score = nil
-  card = rand(1...13)
 
-  # dealer_draws, has to draw two cards
+  def draw_card
+    rand(1...13)
+  end
+
+  # first time drawing cards
   dealer_cards = []
-  2.times { dealer_cards << card }
+  2.times { dealer_cards << draw_card }
 
   player_cards = []
-  player_cards << card
+  player_cards << draw_card
 
-  puts "Dealer has #{dealer_cards[0]}"
-  puts "You have #{player_cards[0]}"
-
-
+  puts "Dealer has #{dealer_cards}"
+  puts "You have #{player_cards}"
 
 # single player, computer dealer
 #
