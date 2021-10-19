@@ -6,17 +6,29 @@
 
   puts "Welcome #{player_name}"
 
+# basic logic, score comparison only
+  player_score = nil
+  dealer_score = nil
+  card = rand(1...13)
+
+  # dealer_draws, has to draw two cards
+  dealer_cards = []
+  2.times { dealer_cards << card }
+
+  player_cards = []
+  player_cards << card
+
+  puts "Dealer has #{dealer_cards[0]}"
+  puts "You have #{player_cards[0]}"
+
+
+
 # single player, computer dealer
-# player_score = nil
-# dealer_score = nil
+#
 
 # objective: get cards closest to 21
 
-# card = rand(1...13)
 
-# def draw_card
-#   player_score += card
-# end
 
 # if over 21: lose
 # player_score > dealer_score && player_score <= 21 ? win : lose
