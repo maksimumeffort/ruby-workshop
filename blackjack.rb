@@ -8,8 +8,8 @@
 
 # basic logic, score comparison only
 
-  def draw_card(deck)
-    deck << rand(1...13)
+  def draw_card(side)
+    side << rand(1...13)
   end
 
   def score_count(player, dealer)
@@ -25,6 +25,7 @@
   # first cards
   dealer_cards = []
   player_cards = []
+
 
   2.times { draw_card(dealer_cards) }
   draw_card(player_cards)
@@ -53,7 +54,7 @@
 
 # objective: get cards closest to 21
 
-
+# deck has to have  52 cards before the start of the game
 
 # if over 21: lose
 # player_score > dealer_score && player_score <= 21 ? win : lose
