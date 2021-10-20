@@ -46,6 +46,7 @@
     end
   end
 
+  score_count(player_cards, dealer_cards)
 
 # single player, computer dealer
 #
