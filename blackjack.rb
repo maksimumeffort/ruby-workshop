@@ -8,16 +8,21 @@
 
 # basic logic, score comparison only
 
-  def draw_card
-    rand(1...13)
+  def draw_card(deck)
+    deck << rand(1...13)
+  end
+
+  def score_count(player, dealer)
+    puts "Dealer has #{dealer.sum}"
+    puts player.sum > dealer.sum ? 'You win!' : 'You lose'
   end
 
   # first cards
   dealer_cards = []
-  2.times { dealer_cards << draw_card }
-
   player_cards = []
-  player_cards << draw_card
+
+  2.times { draw_card(dealer_cards) }
+  draw_card(player_cards)
 
   puts "Dealer has #{dealer_cards[0]}"
 
@@ -28,11 +33,9 @@
     choice = gets.chomp.downcase
 
     if choice == "hit"
-      player_cards << draw_card
-
+      draw_card(player_cards)
     elsif choice == "stay"
-      puts "Dealer has #{dealer_cards.sum}"
-      puts player_cards.sum > dealer_cards.sum ? 'You win!' : 'You lose'
+      score_count(player_cards, dealer_cards)
     else
       puts 'Not an option'
     end
