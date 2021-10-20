@@ -25,15 +25,18 @@
   until player_cards.sum > 21
     puts "You have #{player_cards.sum}"
     puts "Your move. [hit/stay]"
-    choice = gets.chomp
+    choice = gets.chomp.downcase
 
     if choice == "hit"
       player_cards << draw_card
-    else
+
+    elsif choice == "stay"
       puts "Dealer has #{dealer_cards.sum}"
       puts player_cards.sum > dealer_cards.sum ? 'You win!' : 'You lose'
+    else
+      puts 'Not an option'
     end
-    puts "You're over 21. You lose"
+    # puts "You're over 21. You lose"
   end
 
 
