@@ -47,7 +47,7 @@
     end
   end
 
-  score_count(player_cards, dealer_cards)
+  puts player_cards.sum > 21 ? "You're over 21. You lose" : score_count(player_cards, dealer_cards)
 
 # single player, computer dealer
 #
