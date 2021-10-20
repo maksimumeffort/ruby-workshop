@@ -19,7 +19,11 @@
 
   def player_choice(cards)
     puts "You have #{cards.sum}"
-    puts "Your move. [hit/stay]"
+    puts 'Your move. [hit/stay]'
+  end
+
+  def count_deck(player, dealer)
+    52 - (player.length + dealer.length)
   end
 
   # first cards
@@ -38,16 +42,14 @@
     choice = gets.chomp.downcase
 
     case choice
-    when 'hit'
-      draw_card(player_cards)
-    when 'stay'
-      break
-    else
-      puts 'Not an option'
+    when 'hit' then draw_card(player_cards)
+    when 'stay' then break
+    else puts 'Not an option'
     end
   end
 
   puts player_cards.sum > 21 ? "You're over 21. You lose" : score_count(player_cards, dealer_cards)
+  puts "Deck has: #{count_deck(player_cards, dealer_cards)} cards left"
 
 # single player, computer dealer
 #
