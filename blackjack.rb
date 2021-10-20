@@ -17,6 +17,11 @@
     puts player.sum > dealer.sum ? 'You win!' : 'You lose'
   end
 
+  def player_choice(cards)
+    puts "You have #{cards.sum}"
+    puts "Your move. [hit/stay]"
+  end
+
   # first cards
   dealer_cards = []
   player_cards = []
@@ -27,19 +32,18 @@
   puts "Dealer has #{dealer_cards[0]}"
 
   # player choice logic
-  until player_cards.sum > 21
-    puts "You have #{player_cards.sum}"
-    puts "Your move. [hit/stay]"
+  while player_cards.sum <= 21
+    player_choice(player_cards)
     choice = gets.chomp.downcase
 
-    if choice == "hit"
+    case choice
+    when 'hit'
       draw_card(player_cards)
-    elsif choice == "stay"
-      score_count(player_cards, dealer_cards)
+    when 'stay'
+      break
     else
       puts 'Not an option'
     end
-    # puts "You're over 21. You lose"
   end
 
 
