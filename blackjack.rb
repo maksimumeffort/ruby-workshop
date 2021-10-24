@@ -21,10 +21,9 @@
   def generate_deck
     suits = ["D", "C", "H", "S"]
     values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
-    deck = []
-    values.each do |value|
-      suits.each do |suit|
-        deck << [value, suit]
+    values.map do |value|
+      suits.map do |suit|
+        [value, suit]
       end
     end
   end
@@ -34,14 +33,13 @@
   # end
 
   # first cards
-  generate_deck
-  puts deck
+  deck = generate_deck
 
   dealer_cards = []
   player_cards = []
 
-  2.times { draw_card(dealer_cards) }
-  draw_card(player_cards)
+  # 2.times { draw_card(dealer_cards) }
+  # draw_card(player_cards)
 
   puts "Dealer has #{dealer_cards[0]}"
 
