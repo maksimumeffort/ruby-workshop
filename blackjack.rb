@@ -8,55 +8,60 @@
 
 # mid level logic, score comparison with cards
 
-  def score_count(player, dealer)
-    puts "Dealer has #{dealer.sum}"
-    puts player.sum > dealer.sum ? 'You win!' : 'You lose'
-  end
+  # methods
+    def score_count(player, dealer)
+      puts "Dealer has #{dealer.sum}"
+      puts player.sum > dealer.sum ? 'You win!' : 'You lose'
+    end
 
-  def player_choice(cards)
-    puts "You have #{cards.sum}"
-    puts 'Your move. [hit/stay]'
-  end
+    def player_choice(cards)
+      puts "You have #{cards.sum}"
+      puts 'Your move. [hit/stay]'
+    end
 
-  def generate_deck
-    suits = ["D", "C", "H", "S"]
-    values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
-    values.map do |value|
-      suits.map do |suit|
-        [value, suit]
+    def generate_deck
+      suits = ["D", "C", "H", "S"]
+      values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
+      values.map do |value|
+        suits.map do |suit|
+          [value, suit]
+        end
       end
     end
-  end
 
-  # def draw_card(side)
-  #   side << deck
-  # end
+    def draw_card(side, cards)
+      side << cards.pop
+    end
 
   # first cards
-  deck = generate_deck.flatten(1)
-  print deck[0]
-
   dealer_cards = []
   player_cards = []
+  deck = generate_deck.flatten(1).shuffle
+
+  # 5.times {draw_card(player_cards, deck)}
+  print deck
+
+  puts
+
 
   # 2.times { draw_card(dealer_cards) }
   # draw_card(player_cards)
 
-  puts "Dealer has #{dealer_cards[0]}"
+  # puts "Dealer has #{dealer_cards[0]}"
 
   # player choice logic
-  while player_cards.sum <= 21
-    player_choice(player_cards)
-    choice = gets.chomp.downcase
+  # while player_cards.sum <= 21
+  #   player_choice(player_cards)
+  #   choice = gets.chomp.downcase
 
-    case choice
-    when 'hit' then draw_card(player_cards)
-    when 'stay' then break
-    else puts 'Not an option'
-    end
-  end
+  #   case choice
+  #   when 'hit' then draw_card(player_cards)
+  #   when 'stay' then break
+  #   else puts 'Not an option'
+  #   end
+  # end
 
-  puts player_cards.sum > 21 ? "You're over 21. You lose" : score_count(player_cards, dealer_cards)
+  # puts player_cards.sum > 21 ? "You're over 21. You lose" : score_count(player_cards, dealer_cards)
 
 # single player, computer dealer
 
