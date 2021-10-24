@@ -8,10 +8,6 @@
 
 # basic logic, score comparison only
 
-  def draw_card(side)
-    side << rand(1...13)
-  end
-
   def score_count(player, dealer)
     puts "Dealer has #{dealer.sum}"
     puts player.sum > dealer.sum ? 'You win!' : 'You lose'
@@ -22,14 +18,27 @@
     puts 'Your move. [hit/stay]'
   end
 
-  def count_deck(player, dealer)
-    52 - (player.length + dealer.length)
+  def generate_deck
+    suits = ["D", "C", "H", "S"]
+    values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
+    deck = []
+    values.each do |value|
+      suits.each do |suit|
+        deck << [value, suit]
+      end
+    end
   end
 
+  # def draw_card(side)
+  #   side << deck
+  # end
+
   # first cards
+  generate_deck
+  puts deck
+
   dealer_cards = []
   player_cards = []
-
 
   2.times { draw_card(dealer_cards) }
   draw_card(player_cards)
@@ -49,10 +58,8 @@
   end
 
   puts player_cards.sum > 21 ? "You're over 21. You lose" : score_count(player_cards, dealer_cards)
-  puts "Deck has: #{count_deck(player_cards, dealer_cards)} cards left"
 
 # single player, computer dealer
-#
 
 # objective: get cards closest to 21
 
