@@ -6,7 +6,7 @@
 
   # puts "Welcome #{player_name}"
 
-# basic logic, score comparison only
+# mid level logic, score comparison with cards
 
   def score_count(player, dealer)
     puts "Dealer has #{dealer.sum}"
@@ -33,7 +33,8 @@
   # end
 
   # first cards
-  deck = generate_deck
+  deck = generate_deck.flatten(1)
+  print deck[0]
 
   dealer_cards = []
   player_cards = []
