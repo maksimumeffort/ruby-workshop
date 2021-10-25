@@ -1,11 +1,3 @@
-# interface
-
-  # greeting
-  # puts 'Enter your name'
-  # player_name = gets.chomp
-
-  # puts "Welcome #{player_name}"
-
 # mid level logic, score comparison with cards
 
   # methods
@@ -33,18 +25,28 @@
       side << cards.pop
     end
 
+    def card_score(side)
+      side.each do |s|
+        # if s[0] =
+      end
+    end
+
+
   # first cards
   dealer_cards = []
   player_cards = []
   deck = generate_deck.flatten(1).shuffle
 
-  # 5.times {draw_card(player_cards, deck)}
-  print deck
+  # interface
+    choice = nil
 
-  puts
+    while choice != 'n'
+      puts 'Do you want to play a hand? Y/n'
+      choice = gets.chomp.downcase
+    end
 
 
-  # 2.times { draw_card(dealer_cards) }
+  # 2.times { draw_card(dealer_cards, deck) }
   # draw_card(player_cards)
 
   # puts "Dealer has #{dealer_cards[0]}"
