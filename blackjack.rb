@@ -12,8 +12,8 @@
     end
 
     def generate_deck
-      suits = ["D", "C", "H", "S"]
-      values = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
+      suits = %w[D C H S]
+      values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
       values.map do |value|
         suits.map do |suit|
           [value, suit]
@@ -26,11 +26,12 @@
     end
 
     def card_score(side)
+      score = 0
       side.each do |s|
-        # if s[0] =
+        s[0].class == Integer ? score += s[0] : score += 10
       end
+      score
     end
-
 
   # first cards
   dealer_cards = []
@@ -38,13 +39,12 @@
   deck = generate_deck.flatten(1).shuffle
 
   # interface
-    choice = nil
+    # choice = nil
 
-    while choice != 'n'
-      puts 'Do you want to play a hand? Y/n'
-      choice = gets.chomp.downcase
-    end
-
+    # while choice != 'n'
+    #   puts 'Do you want to play a hand? Y/n'
+    #   choice = gets.chomp.downcase
+    # end
 
   # 2.times { draw_card(dealer_cards, deck) }
   # draw_card(player_cards)
