@@ -28,6 +28,11 @@
     def card_score(side)
       score = 0
       side.each do |s|
+        # needs to first check if s[0] is A, if so it can be either 11 or 1
+        # need 2 types of counters then:
+        # 1 counts if A is 11, other counts if 1
+        # if score is less than threshold Ace equals 11
+
         s[0].class == Integer ? score += s[0] : score += 10
       end
       score
