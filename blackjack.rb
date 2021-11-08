@@ -2,7 +2,7 @@
 
   # methods
 
-    # generate_deck method
+    # 1 generate_deck method
     def generate_deck
       suits = %w[♦️ ♣️ 🤍 ♠️]
       values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
@@ -13,7 +13,7 @@
       end
     end
 
-    # shuffle_deck method
+    # 2 shuffle_deck method
     def shuffle_deck
       generate_deck.flatten(1).shuffle
     end
@@ -23,7 +23,7 @@
       side << cards.pop
     end
 
-    # identify_cards method
+    # 3 identify_cards method
     def identify_cards(side)
       # lists cards drawn
       side.map do |s|
@@ -31,7 +31,7 @@
       end
     end
 
-    # label_cards method
+    # 4 label_cards method
     def label_cards(side)
       # puts a label on each card drawn
       labels = []
@@ -48,8 +48,8 @@
       # labels: Number || Face|| Ace
     end
 
-    # card_value method
-    def card_value(side)
+    # 5 cards_value method
+    def cards_value(side)
       #assigns value to card based on its label
       score = 0
       label_cards(side).each do |label|
@@ -62,20 +62,26 @@
       score
     end
 
+    # 6 find_winner method
+    def find_winner(player, dealer)
+      puts cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
+    end
+
   # first cards
+
   dealer_cards = []
   player_cards = []
-  # dealer_score = card_score(dealer_cards)
-  # player_score = card_score(player_cards)
-
-
   cards = shuffle_deck
 
-  2.times { draw_card(dealer_cards, cards) }
 
-  puts identify_cards(dealer_cards)
-  puts label_cards(dealer_cards)
-  puts card_value(dealer_cards)
+
+  2.times { draw_card(dealer_cards, cards) }
+  2.times { draw_card(player_cards, cards) }
+
+  puts "Dealer has #{identify_cards(dealer_cards)} (#{cards_value(dealer_cards)})"
+
+  puts "You have #{puts identify_cards(player_cards)} (#{cards_value(player_cards)})"
+  find_winner(player_cards, dealer_cards)
   # interface
   #   choice = nil
 
