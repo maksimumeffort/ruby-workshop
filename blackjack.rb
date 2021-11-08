@@ -25,15 +25,20 @@
 
     # identify_cards method
     def identify_cards(side)
-      side.each do |s|
-
+      # lists cards drawn
+      side.map do |s|
+        s.join(' ')
       end
     end
 
     # label_cards method
+    def label_cards(side)
+      # puts a label on each card drawn
+      # labels: Number, Face, Ace
+    end
 
     # card_value method
-
+      #assigns value to card based on its label
 
     def card_score(side)
       score = 0
@@ -59,15 +64,9 @@
 
 
   cards = shuffle_deck
-  #generate_deck.flatten(1).shuffle
 
-  print cards
+  2.times { draw_card(dealer_cards, cards) }
 
-  draw_card(player_cards, cards)
-  puts '___________________'
-  print cards
-  puts '___________________'
-  print player_cards
 
   # interface
   #   choice = nil
@@ -77,7 +76,7 @@
   #   #   choice = gets.chomp.downcase
   #   # end
 
-  # 2.times { draw_card(dealer_cards, deck) }
+  #
   # draw_card(player_cards, deck)
 
   # # puts "Dealer has #{dealer_cards[0]}"
