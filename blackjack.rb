@@ -1,8 +1,3 @@
-# class String
-#   def numeric?
-#     Float(self) != nil rescue false
-#   end
-# end
 # mid level logic, score comparison with cards
 
   # methods
@@ -55,23 +50,13 @@
 
     # card_value method
     def card_value(side)
-      score = nil
-      label_cards(side).each do
-
-    end
       #assigns value to card based on its label
-
-    def card_score(side)
       score = 0
-      side.each do |s|
-        # needs to first check if s[0] is A, if so it can be either 11 or 1
-        if s[0] == 'A' && score < 21
-          score += 11
-        elsif s[0] == 'A' && score > 21
-          score += 1
-        # needs an if, elsif, else
-        else
-          s[0].class == Integer ? score += s[0] : score += 10
+      label_cards(side).each do |label|
+        case label
+        when 'Face' then score += 10
+        when 'Ace'  then score += 11
+        else score += label.to_i
         end
       end
       score
@@ -88,8 +73,9 @@
 
   2.times { draw_card(dealer_cards, cards) }
 
-  print identify_cards(dealer_cards)
+  puts identify_cards(dealer_cards)
   puts label_cards(dealer_cards)
+  puts card_value(dealer_cards)
   # interface
   #   choice = nil
 
