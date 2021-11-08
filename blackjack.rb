@@ -4,7 +4,7 @@
 
     # generate_deck method
     def generate_deck
-      suits = %w[D C H S]
+      suits = %w[♦️ ♣️ 🤍 ♠️]
       values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
       values.map do |value|
         suits.map do |suit|
@@ -18,13 +18,23 @@
       generate_deck.flatten(1).shuffle
     end
 
+    # draw_card method
     def draw_card(side, cards)
       side << cards.pop
     end
 
-    # identify_card method
-    # label_card method
+    # identify_cards method
+    def identify_cards(side)
+      side.each do |s|
+
+      end
+    end
+
+    # label_cards method
+
     # card_value method
+
+
     def card_score(side)
       score = 0
       side.each do |s|
@@ -42,16 +52,22 @@
     end
 
   # first cards
-  # dealer_cards = []
-  # player_cards = []
+  dealer_cards = []
+  player_cards = []
   # dealer_score = card_score(dealer_cards)
   # player_score = card_score(player_cards)
 
 
-  deck = shuffle_deck
+  cards = shuffle_deck
   #generate_deck.flatten(1).shuffle
 
-  print deck
+  print cards
+
+  draw_card(player_cards, cards)
+  puts '___________________'
+  print cards
+  puts '___________________'
+  print player_cards
 
   # interface
   #   choice = nil
