@@ -19,7 +19,7 @@
     end
 
     # draw_card method
-    def draw_card(side, cards)
+    def draw_card(side, cards = shuffle_deck)
       side << cards.pop
     end
 
@@ -62,25 +62,48 @@
       score
     end
 
+    # hit_stay method
+    def hit_stay(side, score = cards_value(side))
+      while score <= 21
+        puts 'Do you want to hit or stay?'
+        choice = gets.chomp.downcase
+        case choice
+        when 'hit'
+          draw_card(side)
+          puts cards_value(side)
+        when 'stay' then break
+        else puts 'Not an option'
+        end
+      end
+    end
+
     # 6 find_winner method
     def find_winner(player, dealer)
-      puts cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
+      if cards_value(player) > cards_value(dealer) && cards_value(player) > 21
+        puts 'You lost'
+      elsif cards_value(player) > cards_value(dealer)
+        puts 'You won'
+      else
+        puts 'You lost'
+      end
     end
 
   # first cards
 
   dealer_cards = []
   player_cards = []
-  cards = shuffle_deck
 
 
+  2.times { draw_card(dealer_cards) }
+  2.times { draw_card(player_cards) }
 
-  2.times { draw_card(dealer_cards, cards) }
-  2.times { draw_card(player_cards, cards) }
+  print identify_cards(dealer_cards)
+  puts cards_value(dealer_cards)
 
-  puts "Dealer has #{identify_cards(dealer_cards)} (#{cards_value(dealer_cards)})"
+  print identify_cards(player_cards)
+  puts cards_value(player_cards)
 
-  puts "You have #{puts identify_cards(player_cards)} (#{cards_value(player_cards)})"
+  hit_stay(player_cards)
   find_winner(player_cards, dealer_cards)
   # interface
   #   choice = nil
@@ -134,9 +157,5 @@
   # When the cards are dealt at the beginning of the round the dealer will draw 2 cards for themselves and one card will be hidden.
   # After all, players go, the dealer will then reveal the hidden card and will hit until they are at or higher than 17. At which point the dealer will stay.
   # Some tables will or online sites will have the dealer stop in Blackjack at 16, so make sure you read the table's rules
-
-
-
-
 
 
