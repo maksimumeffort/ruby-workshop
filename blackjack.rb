@@ -40,8 +40,7 @@
           labels << "Ace"
         elsif card.index(/\d/) == nil
           labels << "Face"
-        else
-          labels << card[0]
+        else labels << card[0]
         end
       end
       labels
@@ -75,22 +74,24 @@
       end
     end
 
+    # count_score method
+    def count_score(player, dealer)
+      cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
+    end
+
     # 6 find_winner method
     def find_winner(player, dealer)
-      if cards_value(player) > cards_value(dealer) && cards_value(player) > 21
-        puts 'You lost'
-      elsif cards_value(player) > cards_value(dealer)
-        puts 'You won'
-      else
-        puts 'You lost'
-      end
+      cards_value(player) > 21 ? 'You are over 21. You lose' : count_score(player, dealer)
     end
+
+  # interface
+
+
 
   # first cards
 
   dealer_cards = []
   player_cards = []
-
 
   2.times { draw_card(dealer_cards) }
   2.times { draw_card(player_cards) }
@@ -103,34 +104,8 @@
 
   hit_stay(player_cards)
   find_winner(player_cards, dealer_cards)
-  # interface
-  #   choice = nil
 
-  #   # while choice != 'n'
-  #   #   puts 'Do you want to play a hand? Y/n'
-  #   #   choice = gets.chomp.downcase
-  #   # end
 
-  #
-  # draw_card(player_cards, deck)
-
-  # # puts "Dealer has #{dealer_cards[0]}"
-
-  # # player choice logic
-  # # game_loop method
-  # while player_score <= 21
-  #   # player_choice(player_cards)
-  #   puts 'your choice. [hit/stay]'
-  #   choice = gets.chomp.downcase
-
-  #   case choice
-  #   when 'hit' then
-  #     draw_card(player_cards, deck);
-  #     card_score(player_cards)
-  #   when 'stay' then break
-  #   else puts 'Not an option'
-  #   end
-  # end
 
   # determine_winner method
   # puts player_cards.sum > 21 ? "You're over 21. You lose" : score_count(player_cards, dealer_cards)
