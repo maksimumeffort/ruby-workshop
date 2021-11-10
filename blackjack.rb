@@ -61,13 +61,19 @@
       score
     end
 
+    # hit method
+    def hit(side)
+      draw_card(side)
+      puts cards_value(side)
+    end
+
     # hit_stay method
     def hit_stay(side, score = cards_value(side))
       while score <= 21
         puts 'Do you want to hit or stay?'
         choice = gets.chomp.downcase
         case choice
-        when 'hit' then draw_card(side); puts cards_value(side); score = cards_value(side)
+        when 'hit' then hit(side); score = cards_value(side)
         when 'stay' then break
         else puts 'Not an option'
         end
@@ -76,35 +82,43 @@
 
     # count_score method
     def count_score(player, dealer)
-      cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
+      puts cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
     end
 
     # 6 find_winner method
     def find_winner(player, dealer)
-      cards_value(player) > 21 ? 'You are over 21. You lose' : count_score(player, dealer)
+      puts cards_value(player) > 21 ? 'You are over 21. You lose' : count_score(player, dealer)
     end
 
   # interface
 
 
-
   # first cards
 
-  dealer_cards = []
-  player_cards = []
+  # play_loop
+  cards = shuffle_deck
 
-  2.times { draw_card(dealer_cards) }
-  2.times { draw_card(player_cards) }
+  while cards.length > 4
 
-  print identify_cards(dealer_cards)
-  puts cards_value(dealer_cards)
+    dealer_cards = []
+    player_cards = []
 
-  print identify_cards(player_cards)
-  puts cards_value(player_cards)
+    2.times { draw_card(dealer_cards) }
+    2.times { draw_card(player_cards) }
 
-  hit_stay(player_cards)
-  find_winner(player_cards, dealer_cards)
+    print identify_cards(dealer_cards)
+    puts cards_value(dealer_cards)
 
+    print identify_cards(player_cards)
+    puts cards_value(player_cards)
+
+    hit_stay(player_cards)
+    find_winner(player_cards, dealer_cards)
+    cards = shuffle_deck
+    puts "Deck has: #{shuffle_deck.length} cards left "
+
+  end
+    puts "not enough cards"
 
 
   # determine_winner method
