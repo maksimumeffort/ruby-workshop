@@ -68,9 +68,7 @@
         puts 'Do you want to hit or stay?'
         choice = gets.chomp.downcase
         case choice
-        when 'hit'
-          draw_card(side)
-          puts cards_value(side)
+        when 'hit' then draw_card(side); puts cards_value(side); score = cards_value(side)
         when 'stay' then break
         else puts 'Not an option'
         end
