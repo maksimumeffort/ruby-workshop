@@ -68,9 +68,20 @@
     end
 
     # hit method
-    def hit(side)
+    def player_hit(side, score = cards_value(side))
       draw_card(side)
-      puts cards_value(side)
+      score = cards_value(side)
+      puts "Player hand: #{list_cards(side)} (#{cards_value(side)})"
+    end
+
+    # dealer_hit method
+    def dealer_hit(side, score = cards_value(side))
+      until score >= 17
+        puts 'Dealer draws card'
+        draw_card(side)
+        score = cards_value(side)
+        puts "Dealer hand: #{list_cards(side)} (#{cards_value(side)})"
+      end
     end
 
     # hit_stay method
@@ -79,19 +90,10 @@
         puts 'Do you want to hit or stay?'
         choice = gets.chomp.downcase
         case choice
-        when 'hit' then hit(side); score = cards_value(side)
+        when 'hit' then player_hit(side); score = cards_value(side)
         when 'stay' then break
         else puts 'Not an option'
         end
-      end
-    end
-
-    # dealer_hit method
-    def dealer_hit(side, score = cards_value(side))
-      until score >= 17
-        puts 'Dealer draws card'
-        hit(side)
-        score = cards_value(side)
       end
     end
 
@@ -126,7 +128,7 @@
     2.times { draw_card(dealer_cards) }
     2.times { draw_card(player_cards) }
 
-    puts "Dealer has: #{list_cards(dealer_cards)} (#{cards_value(dealer_cards)}) "
+    puts "Dealer has: #{identify_cards(dealer_cards)[0]}  , <other card hidden> "
 
     puts "Player has: #{list_cards(player_cards)} (#{cards_value(player_cards)})"
 
