@@ -20,7 +20,7 @@
     end
 
     # draw_card method
-    def draw_card(side, cards = shuffle_deck)
+    def draw_card(side, cards)
       # possibly an issue with using shuffle_deck
       side << cards.pop
     end
@@ -70,16 +70,16 @@
 
     # hit method
     # player gets a card
-    def player_hit(side)
-      draw_card(side)
+    def player_hit(side, cards)
+      draw_card(side, cards)
       puts "Player hand: #{list_cards(side)} (#{cards_value(side)})"
     end
 
     # dealer_hit method
-    def dealer_hit(side, score = cards_value(side))
+    def dealer_hit(side, cards, score = cards_value(side))
       until score >= 17
         puts 'Dealer draws card'
-        draw_card(side)
+        draw_card(side, cards)
         score = cards_value(side)
       end
       puts "Dealer hand: #{list_cards(side)} (#{cards_value(side)})"
@@ -87,12 +87,12 @@
 
     # hit_stay method
     # Player interface. 2 options: Hit => add 1 card, stay => keep player_score
-    def hit_stay(side, score = cards_value(side))
+    def hit_stay(side, cards, score = cards_value(side))
       while score <= 21
         puts 'Do you want to hit or stay?'
         choice = gets.chomp.downcase
         case choice
-        when 'hit' then player_hit(side); score = cards_value(side)
+        when 'hit' then player_hit(side, cards); score = cards_value(side)
         when 'stay' then break
         else puts 'Not an option'
         end
@@ -125,27 +125,35 @@
   # first cards
 
   # play_loop
-  # cards = shuffle_deck
+  cards = shuffle_deck
 
-  # while cards.length > 4
+  while cards.length > 4
+    puts 'Do you want to play a hand?[Yn]'
+    selection = gets.chomp.downcase
 
-    dealer_cards = []
-    player_cards = []
+    case selection
+    when 'y'
+      dealer_cards = []
+      player_cards = []
 
-    2.times { draw_card(dealer_cards) }
-    2.times { draw_card(player_cards) }
+      2.times do
+        draw_card(dealer_cards, cards)
+        draw_card(player_cards, cards)
+      end
 
-    # player can only see 1 dealer card
-    puts "Dealer has: #{identify_cards(dealer_cards)[0]}  , <other card hidden> "
+      # player can only see 1 dealer card
+      puts "Dealer has: #{identify_cards(dealer_cards)[0]}  , <other card hidden> "
+      puts "Player has: #{list_cards(player_cards)} (#{cards_value(player_cards)})"
 
-    puts "Player has: #{list_cards(player_cards)} (#{cards_value(player_cards)})"
+      hit_stay(player_cards, cards)
+      dealer_hit(dealer_cards, cards)
+      find_winner(player_cards, dealer_cards)
+      puts "Deck has: #{cards.length} cards left "
 
-    hit_stay(player_cards)
-    dealer_hit(dealer_cards)
-    find_winner(player_cards, dealer_cards)
-    puts "Deck has: #{shuffle_deck.length} cards left "
-
-  # end
+    when 'n' then break
+    else puts 'Not an option'
+    end
+  end
   #   puts "not enough cards"
 
 # single player, computer dealer
