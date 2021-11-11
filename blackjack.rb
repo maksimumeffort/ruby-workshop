@@ -68,9 +68,8 @@
     end
 
     # hit method
-    def player_hit(side, score = cards_value(side))
+    def player_hit(side)
       draw_card(side)
-      score = cards_value(side)
       puts "Player hand: #{list_cards(side)} (#{cards_value(side)})"
     end
 
@@ -80,8 +79,8 @@
         puts 'Dealer draws card'
         draw_card(side)
         score = cards_value(side)
-        puts "Dealer hand: #{list_cards(side)} (#{cards_value(side)})"
       end
+      puts "Dealer hand: #{list_cards(side)} (#{cards_value(side)})"
     end
 
     # hit_stay method
