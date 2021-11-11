@@ -32,6 +32,11 @@
       end
     end
 
+    # list_cards method
+    def list_cards(side)
+      identify_cards(side).join("  , ")
+    end
+
     # 4 label_cards method
     def label_cards(side)
       # puts a label on each card drawn
@@ -84,6 +89,7 @@
     # dealer_hit method
     def dealer_hit(side, score = cards_value(side))
       until score >= 17
+        puts 'Dealer draws card'
         hit(side)
         score = cards_value(side)
       end
@@ -120,11 +126,9 @@
     2.times { draw_card(dealer_cards) }
     2.times { draw_card(player_cards) }
 
-    print identify_cards(dealer_cards)
-    puts cards_value(dealer_cards)
+    puts "Dealer has: #{list_cards(dealer_cards)} (#{cards_value(dealer_cards)}) "
 
-    print identify_cards(player_cards)
-    puts cards_value(player_cards)
+    puts "Player has: #{list_cards(player_cards)} (#{cards_value(player_cards)})"
 
     hit_stay(player_cards)
     dealer_hit(dealer_cards)
