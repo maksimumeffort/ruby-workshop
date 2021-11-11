@@ -20,6 +20,7 @@
 
     # draw_card method
     def draw_card(side, cards = shuffle_deck)
+      # possibly an issue with using shuffle_deck
       side << cards.pop
     end
 
@@ -80,25 +81,38 @@
       end
     end
 
+    # dealer_hit method
+    def dealer_hit(side, score = cards_value(side))
+      until score >= 17
+        hit(side)
+        score = cards_value(side)
+      end
+    end
+
     # count_score method
     def count_score(player, dealer)
-      puts cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
+      cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
     end
 
     # 6 find_winner method
     def find_winner(player, dealer)
-      puts cards_value(player) > 21 ? 'You are over 21. You lose' : count_score(player, dealer)
+      if cards_value(player) > 21
+        puts 'You are over 21. You lose'
+      elsif cards_value(dealer) > 21
+        puts 'Dealer is over 21. You win'
+      else
+        puts count_score(player, dealer)
+      end
     end
 
   # interface
 
-
   # first cards
 
   # play_loop
-  cards = shuffle_deck
+  # cards = shuffle_deck
 
-  while cards.length > 4
+  # while cards.length > 4
 
     dealer_cards = []
     player_cards = []
@@ -113,12 +127,12 @@
     puts cards_value(player_cards)
 
     hit_stay(player_cards)
+    dealer_hit(dealer_cards)
     find_winner(player_cards, dealer_cards)
-    cards = shuffle_deck
     puts "Deck has: #{shuffle_deck.length} cards left "
 
-  end
-    puts "not enough cards"
+  # end
+  #   puts "not enough cards"
 
 
   # determine_winner method
