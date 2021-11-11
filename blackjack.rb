@@ -98,15 +98,20 @@
 
     # count_score method
     def count_score(player, dealer)
-      cards_value(player) > cards_value(dealer) ? 'You won' : 'You lost'
+      if cards_value(player) > cards_value(dealer)
+        'Player wins!'
+      elsif cards_value(player) == cards_value(dealer)
+        "It's a tie!"
+      else 'Dealer wins!'
+      end
     end
 
     # 6 find_winner method
     def find_winner(player, dealer)
       if cards_value(player) > 21
-        puts 'You are over 21. You lose'
+        puts 'You are over 21. Dealer wins!'
       elsif cards_value(dealer) > 21
-        puts 'Dealer is over 21. You win'
+        puts 'Dealer is over 21. Player wins!'
       else
         puts count_score(player, dealer)
       end
